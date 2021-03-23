@@ -1,7 +1,19 @@
  # 1 Hz para contar até 20M
  # X Hz para contar até 200000
  # X= 100 Hz
+
+ # 1 Hz - 20M
+ # 10 Hz - X M
+ # X = 200000000 
+
+ # 1 Hz - 20M
+ # 5 Hz - X M
+ # X = 100000000 
  
+ # 1 Hz - 20M
+ # 1 Hz - X M
+ # X = 20000000 
+
  #Mapeamento de variáveis:
  #counter -> $t0
 
@@ -18,8 +30,11 @@ main: li $t0,0
 while: 
     li $v0,READ_CORE_TIMER # while (1) {
     syscall #
-    
+
     blt $v0, 200000, endWhile  # while(readCoreTimer() < 200000);
+    #blt $v0, 200000000, endWhile  #   #10 Hz
+    #blt $v0, 100000000, endWhile  #   #5 Hz
+    #blt $v0, 20000000, endWhile   #   #1 Hz
     li $v0, RESET_CORE_TIMER  # resetCoreTimer();
     syscall
 
