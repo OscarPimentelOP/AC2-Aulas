@@ -4,11 +4,11 @@
 
  # 1 Hz - 20M
  # 10 Hz - X M
- # X = 200000000 
+ # X = 2000000 
 
  # 1 Hz - 20M
  # 5 Hz - X M
- # X = 100000000 
+ # X = 4000000 
  
  # 1 Hz - 20M
  # 1 Hz - X M
@@ -32,8 +32,8 @@ while:
     syscall #
 
     blt $v0, 200000, endWhile  # while(readCoreTimer() < 200000);
-    #blt $v0, 200000000, endWhile  #   #10 Hz
-    #blt $v0, 100000000, endWhile  #   #5 Hz
+    #blt $v0, 2000000, endWhile  #   #10 Hz
+    #blt $v0, 4000000, endWhile  #   #5 Hz
     #blt $v0, 20000000, endWhile   #   #1 Hz
     li $v0, RESET_CORE_TIMER  # resetCoreTimer();
     syscall
