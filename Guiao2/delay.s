@@ -3,7 +3,7 @@
 
 .equ READ_CORE_TIMER, 11
 .equ RESET_CORE_TIMER, 12
-.equ K, 10000
+.equ K, 20000
 
 .data
 .text
