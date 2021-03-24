@@ -12,18 +12,20 @@
 .globl main
 
 main:
-    addiu $sp,$sp,-4 		
-	sw $ra,0 ($sp)
+    addiu $sp,$sp,-8 		
+	sw $ra,0($sp)
+    sw $s0, 4($sp) 
 
-    li $v1, 0   # cnt1 = 0;
+    li $s0, 0   # cnt1 = 0;
 
 while:
-    addi $v0, $v1, 1
-    move $a0, $v0 
+    addi $s0, $s0, 1
+    move $a0, $s0 
     li $a1, 10
     li $v0, printInt 
     syscall
 
+    li $a0, 20000000
     jal delay
 
     j while
@@ -31,8 +33,9 @@ while:
 
 
 endWhile:
-    lw	$ra,0 ($sp)
-	addi	$sp,$sp,4
+    lw	$ra,0($sp)
+    lw  $s0, 4($sp)
+	addi	$sp,$sp,8
 	jr	$ra
 
 #--------------------------------------------------
