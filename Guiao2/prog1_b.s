@@ -18,8 +18,10 @@ main: li $t0,0
 while: 
     li $v0,READ_CORE_TIMER # while (1) {
     syscall #
-    
-    blt $v0, 200000, endWhile  # while(readCoreTimer() < 200000);
+while2:    
+    blt $v0, 200000, endWhile2  # while(readCoreTimer() < 200000);
+    j while2
+endWhile2:
     li $v0, RESET_CORE_TIMER  # resetCoreTimer();
     syscall
 
