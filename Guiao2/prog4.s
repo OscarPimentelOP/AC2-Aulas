@@ -1,6 +1,7 @@
  #Mapeamento de variáveis:
  #ms -> $t0
 
+.equ PUT_CHAR, 3
 .equ printInt, 6
 .equ READ_CORE_TIMER, 11
 .equ RESET_CORE_TIMER, 12
@@ -28,6 +29,9 @@ while:
     li $a0, 20000000
     jal delay
 
+    li $a0, '\r' 
+    li $v0, PUT_CHAR # putChar('\r');
+    syscall
     j while
 
 
