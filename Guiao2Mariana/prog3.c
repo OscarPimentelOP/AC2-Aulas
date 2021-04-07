@@ -22,7 +22,7 @@ void delay(int ms){
 
 void main(){
     while(1){
-        cnt1++;
+        printInt(cnt1++);
         delay(200000000); // 1 HZ --> 20M/1
         cnt5++;
         delay(400000); // 5 Hz --> 20M/5
