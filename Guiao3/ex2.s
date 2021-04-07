@@ -29,7 +29,7 @@ while: #while 1
     lw $t2, PORTB($t1)   #load what is on B
     lw $t3, LATE($t1)    #load what is on E
 
-    xori $t4, $t2, -1
+    xori $t4, $t2, -1  # not $t2 -> or $t3, $t3, $t2
     sw $t4, LATE($t1)    #store to RE
 
     j while
