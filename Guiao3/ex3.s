@@ -16,21 +16,20 @@ main:
 #set E0 as output
     lui $t1, SFR_BASE_HI #
     lw $t2, TRISE($t1)  # READ (mem_Addr = 0xBF880000+0x00006100)
-    andi $t2, $t2, 0xFFFE # MODIFY (E0 = 0)
+    andi $t2, $t2, 0xFFF0 # MODIFY (E0 = 0)
     sw $t2, TRISE($t1) # WRITE (Write TRISE register) configured
 
 #set B0 as input
     lw $t2, TRISB($t1)  # READ (mem_Addr = 0xBF880000+0x00006040)
-    ori $t2, $t2, 1 # MODIFY (B0 = 1s)    
+    ori $t2, $t2, 0x000F # MODIFY (B0 = 1s)    
     sw $t2,TRISB($t1) # WRITE (Write TRISE register) configured
 
 
 while: #while 1	
     lw $t2, PORTB($t1)   #load what is on B
-    lw $t3, LATE($t1)    #load what is on E
-
-    xori $t4, $t2, -1  # not $t2 -> or $t3, $t3, $t2
-    sw $t4, LATE($t1)    #store to RE
+    
+    xori $t3,$t3,0x09 #1001
+    sw $t3, LATE($t1)    #store to RE
 
     j while
 
