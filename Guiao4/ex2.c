@@ -2,6 +2,7 @@
 
 
 void delay(int);
+void send2displays(unsigned char);
 
 int main(void){
     TRISE = (TRISE & 0xFFF0);  //RE0 to RE3 as outputs
