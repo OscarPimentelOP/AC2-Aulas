@@ -2,6 +2,7 @@
 
 void send2displays(unsigned char);
 void delay(int);
+unsigned char toBcd(unsigned char);
 
 void main(void){
 
@@ -23,15 +24,15 @@ void main(void){
         int i = 0;
         //do 4 bits, then move to next
         do{
-            delay(15); //wait 50, disolay atualizado de 100 em 100 ms
+            delay(10); //wait 50, disolay atualizado de 100 em 100 ms
             //delay(500); //50Hz
             //delay(1000); //100Hz
-            send2displays(count); //send counter value to displays
+            send2displays(toBcd(count)); //send to BCD counter value to displays
             i++;
         } while(i < 4);
 
         count++; //increase counter
-        count = count % 256; //max 9 bits
+        count = count % 100; //count 0-99
         delay(10); //200 was the value but I want this faster kek
     }
 
@@ -78,4 +79,9 @@ void delay(int ms){
         resetCoreTimer();
         while(readCoreTimer() < 20000);
     }
+}
+
+unsigned char toBcd(unsigned char value)
+{
+	return ((value / 10) << 4) + (value % 10);
 }
