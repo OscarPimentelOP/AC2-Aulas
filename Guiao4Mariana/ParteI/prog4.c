@@ -24,7 +24,7 @@ int main(void){
         for(i=0; i < 7; i++)
         {
             LATB = (LATB & 0x0000) | (segment << 8);
-            delay(1000);                    // send "segment" value to diç.splay
+            delay(1000);                    // send "segment" value to display
                                             // wait 0.5 second
             segment = segment << 1;
         }
