@@ -2,6 +2,7 @@
 
 void delay(int ms);
 void send2displays(unsigned char value);
+unsigned char toBcd(unsigned char value);
 
 int main(void){
     // Configure the A/D module and port RB4 as analog input
@@ -49,7 +50,7 @@ int main(void){
         int k = 0; //do 4 bits then the other 4
         do{
             delay(50); //update displays
-            send2displays(count);
+            send2displays(toBcd(count));
             k++;
         }while(k<4);
         count--;
@@ -96,3 +97,6 @@ void send2displays(unsigned char value){
     displayFlag = !displayFlag;
 }
 
+unsigned char toBcd(unsigned char value){
+    return ((value/10)<<4) + (value%10);
+}
