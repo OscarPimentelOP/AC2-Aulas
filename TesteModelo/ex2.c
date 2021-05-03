@@ -12,15 +12,27 @@ int main(void){
         input = getChar();
         LATB = (LATB & 0x00FF); //clean RB8-15
 
-        if((input == '0') || (input == '1') || (input == '2') || (input == '3')){
-            delay(1000); //update display in 100Hz
-            send2displays(toBcd(input));
+        //if((input == '0') || (input == '1') || (input == '2') || (input == '3')){
+          //  delay(1000); //update display in 100Hz
+            //send2displays(toBcd(input));
+        //}
+        if(input == '0'){
+            send2displays(0x00);
+        }
+        else if(input == '1'){
+            send2displays(0x01);
+        }
+        else if(input == '2'){
+            send2displays(0x02);
+        }
+        else if(input == '3'){
+            send2displays(0x03);
         }
         else{
-            send2displays(15);
-            delay(100);
+            send2displays(0xFF);
             LATB = (LATB & 0x00FF); //clean RB8-15
         }
+        delay(10);  //10 ms -> f = 100 Hz
 
     }
 
@@ -68,3 +80,4 @@ void send2displays(unsigned char value) {
 unsigned char toBcd(unsigned char value){
     return ((value/10)<<4) + (value % 10);
 }
+
