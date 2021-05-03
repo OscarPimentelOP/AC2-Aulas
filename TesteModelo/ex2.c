@@ -14,12 +14,12 @@ int main(void){
 
         if((input == '0') || (input == '1') || (input == '2') || (input == '3')){
             delay(1000); //update display in 100Hz
-            send2displays(toBcd(atoi(input)));
+            send2displays(toBcd(input));
             LATB = (LATB & 0x00FF); //clean RB8-15
         }
         else{
             send2displays(15);
-            delay(1);
+            delay(100);
             LATB = (LATB & 0x00FF); //clean RB8-15
         }
 
