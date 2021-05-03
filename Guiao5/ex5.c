@@ -48,7 +48,7 @@ int main(void) {
         printInt(v,10);
 
 
-    IFS1bits.AD1IF = 0;// Reset AD1IF
+  
     }
     send2displays(v_dec); // Send voltage value to displays
     delay(10); //10 samples per second
