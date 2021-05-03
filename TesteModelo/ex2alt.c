@@ -1,7 +1,7 @@
 #include <detpic32.h>
 
 void delay(int ms);
-void send2displays(unsigned char value);
+void send2displays(unsigned char value1, unsigned char value2);
 unsigned char toBcd(unsigned char value);
 
 int main(void){
@@ -57,8 +57,8 @@ void send2displays(unsigned char value1, unsigned char value2) {
     TRISDbits.TRISD6 = 0;
 
     //determine digits
-    int digit_low = value & 0x0F;
-    int digit_high = value >> 4;
+    //int digit_low = value & 0x0F;
+    //int digit_high = value >> 4;
 
     //send digit_low to display low
     if(displayFlag == 0){
