@@ -9,7 +9,7 @@ int main(void){
     char input;
 
     while(1){
-        input = getChar();
+        input = inkey();
         LATB = (LATB & 0x00FF); //clean RB8-15
 
         //if((input == '0') || (input == '1') || (input == '2') || (input == '3')){
@@ -29,13 +29,14 @@ int main(void){
             send2displays(0x03);
         }
         else{
+            delay(1000);  //wait 1 sec 
             send2displays(0xFF);
             LATB = (LATB & 0x00FF); //clean RB8-15
         }
         delay(10);  //10 ms -> f = 100 Hz
 
     }
-
+    return 0;
 }
 
 void delay(int ms){
