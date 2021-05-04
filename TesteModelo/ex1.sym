@@ -1,0 +1,29 @@
+GAS LISTING ex1.s 			page 1
+
+
+DEFINED SYMBOLS
+               ex1.s:3      *ABS*:000000000000bf88 SFR_BASE_HI
+               ex1.s:4      *ABS*:0000000000006100 TRISE
+               ex1.s:5      *ABS*:0000000000006110 PORTE
+               ex1.s:6      *ABS*:0000000000006120 LATE
+               ex1.s:8      *ABS*:0000000000006040 TRISB
+               ex1.s:9      *ABS*:0000000000006050 PORTB
+               ex1.s:10     *ABS*:0000000000006040 LATB
+               ex1.s:12     *ABS*:0000000000000002 getChar
+               ex1.s:13     *ABS*:0000000000000008 printStr
+               ex1.s:14     *ABS*:000000000000000b readCoreTimer
+               ex1.s:15     *ABS*:000000000000000c resetCoreTimer
+               ex1.s:21     .text:0000000000000000 main
+               ex1.s:31     .text:000000000000001c whileInf
+               ex1.s:35     .text:0000000000000024 ifKey0
+               ex1.s:43     .text:0000000000000044 ifKey1
+               ex1.s:51     .text:0000000000000064 ifKey2
+               ex1.s:59     .text:0000000000000084 ifKey3
+               ex1.s:67     .text:00000000000000a4 ifAnotherKey
+               ex1.s:75     .text:00000000000000b8 forDelay
+               ex1.s:90     .text:00000000000000f0 endForDelay
+               ex1.s:81     .text:00000000000000cc whileDelay
+               ex1.s:87     .text:00000000000000e8 endWhileDelay
+               ex1.s:95     .text:00000000000000fc endProg
+
+NO UNDEFINED SYMBOLS
