@@ -1,11 +1,4 @@
-
-/**
- * O programa desenvolvido nos pontos anteriores permite enviar 4 bits – um caracter
- * hexadecimal – para um dos displays. Escreva agora uma função que envie um byte (8 bits)
- * ou seja dois algarismos hexadecimais para os dois displays, fazendo corresponder os 4 bits
- * menos significativos ao display low e os 4 bits mais significativos ao display high.
- */
-
+#include <detpic32.h>
 
 void delay(int ms){
     for(; ms > 0; ms--){
@@ -42,4 +35,23 @@ void send2displays(unsigned char value){
 
   // Toggle displayFlag
   displayFlag = !displayFlag;
+}
+
+int main(void){
+    int counter;
+    int i;
+    TRISB = (TRISB & 0x00FF);
+    LATB = (LATB & 0x00FF);     // limpar ports
+    counter = 0;
+
+    while(1){
+        i = 0;
+        do{
+            send2displays(counter);
+            delay(15);
+        }while (i++<4);
+        counter++; //increase counter
+        counter = counter % 256; //mod 256
+    }
+    return 0;
 }

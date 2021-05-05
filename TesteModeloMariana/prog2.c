@@ -1,15 +1,8 @@
-
-/**
- * O programa desenvolvido nos pontos anteriores permite enviar 4 bits – um caracter
- * hexadecimal – para um dos displays. Escreva agora uma função que envie um byte (8 bits)
- * ou seja dois algarismos hexadecimais para os dois displays, fazendo corresponder os 4 bits
- * menos significativos ao display low e os 4 bits mais significativos ao display high.
- */
-
+#include <detpic32.h>
 
 void delay(int ms){
-    for(; ms > 0; ms--){
-         resetCoreTimer();
+    for(; ms>0;ms--){
+        resetCoreTimer();
         while(readCoreTimer() < 20000);
     }
 }
@@ -19,11 +12,6 @@ void send2displays(unsigned char value){
                                         0x7F, 0x6F, 0x77, 0x7C, 0x39, 0x5E, 0x79, 0x71};
 
     static char displayFlag = 0;
-
-    TRISB = (TRISB & 0x00FF);               // RB8-RB15 AS OUTPUT
-    TRISD = (TRISD & 0xFF9F);               // RD5 E RD6 AS OUTPUT
-
-    LATB = (LATB & 0x0000);                 // limpar pins
 
     // Determine digits
     int digit_low = value & 0x0F;           // últimos 4 bits  
@@ -42,4 +30,33 @@ void send2displays(unsigned char value){
 
   // Toggle displayFlag
   displayFlag = !displayFlag;
+}
+
+unsigned char toBCD(unsigned char value){
+    return ((value/10)<<4) + (value % 10);
+}
+
+int main(void){
+
+    TRISB = (TRISB & 0x00FF);       // RB8-RB15 as output
+    TRISD = (TRISD & 0x0090);
+    LATB = (LATB & 0x0000);         // clean ports
+    char value;
+    int i;
+
+    while(1){
+        i = 0;
+        value = getChar();
+        if(value=='0'|| value == '1' || value == '2' || value == '3'){
+            send2displays((value & 0x0f));
+        }else{
+            while(i++ < 100){
+                send2displays(0xFF);
+                delay(10);                    
+            }
+            LATB = LATB & 0x00FF;               // apaga os ports como pedido
+        }
+        delay(10);
+    }
+    return 0;
 }

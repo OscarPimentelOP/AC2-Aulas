@@ -12,7 +12,7 @@ void main(void) {
   TRISB = (TRISB & 0x00FF);   //sets pins B8-B15 as output
                               //sets pins B0-B3 as input
   TRISD = (TRISD & 0xFF9F);   //sets pins D5-D6 as output
-  LATB = (LATB & 0x0000);     //sets the output of B8-B15 as '0'
+  LATB = (LATB & 0x0000);     //cleans pins
   LATDbits.LATD5 = 1;         //display low control
   LATDbits.LATD6 = 0;         //display high control
 
@@ -22,7 +22,7 @@ void main(void) {
   char value;
 
   while(1) {
-    value = PORTB & 0x000F;
+    value = PORTB & 0x000F;       // ler os ultimos bits como entrada
     LATB = (LATB & 0x000F) | (display7Scodes[value] << 8);
   }
 }

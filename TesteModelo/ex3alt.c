@@ -33,18 +33,18 @@ int main(void){
 
         if(x++ % 25 == 0){
             // Start conversion
-        AD1CON1bits.ASAM = 1; // Start conversion
-        while( IFS1bits.AD1IF == 0 );// Wait while conversion not done (AD1IF == 0)
-        int *p = (int *)(&ADC1BUF0);
-        int val_ad = 0;
-        int i;
+            AD1CON1bits.ASAM = 1; // Start conversion
+            while( IFS1bits.AD1IF == 0 );// Wait while conversion not done (AD1IF == 0)
+            int *p = (int *)(&ADC1BUF0);
+            int val_ad = 0;
+            int i;
 
-        for( i = 0; i < 16; i++ ){
-            val_ad = val_ad + p[i*4];
-            //printInt(p[i*4],0x0005000A);
-        }
-        val_ad = val_ad / (AD1CON2bits.SMPI +1); // Average of 4 samples
-        freq_count = 1 + (val_ad/255);
+            for( i = 0; i < 16; i++ ){
+                val_ad = val_ad + p[i*4];
+                //printInt(p[i*4],0x0005000A);
+            }
+            val_ad = val_ad / (AD1CON2bits.SMPI +1); // Average of 4 samples
+            freq_count = 1 + (val_ad/255);
         }
 
         int k = 0; //do 4 bits then the other 4
