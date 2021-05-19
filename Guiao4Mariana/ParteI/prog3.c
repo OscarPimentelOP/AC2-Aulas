@@ -15,7 +15,7 @@
 void main(void){
     TRISB = (TRISB & 0x00FF); // portos RB8 a RB15 como saída
     TRISD = (TRISD & 0xFF9F); // portos RD5 e RD6 como saída
-    LATB = (LATB & 0x0000); // output de RB8-RB15 como 0
+    LATB = (LATB & 0x0000); // limpar saída
     LATDbits.LATD5 = 0; // Display low control
     LATDbits.LATD6 = 1; // display high control
 

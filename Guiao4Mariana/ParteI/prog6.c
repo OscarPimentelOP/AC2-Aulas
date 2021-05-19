@@ -22,7 +22,7 @@ int main(void){
         for(i=0; i < 7; i++)
         {
             LATB = (LATB & 0x0000) | (segment << 8);
-            delay(1000);                    // send "segment" value to display
+            delay(10000);                    // send "segment" value to display
                                             // wait 0.5 second -> 2Hz
             segment = segment << 1;
         }

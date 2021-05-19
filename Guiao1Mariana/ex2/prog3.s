@@ -1,3 +1,6 @@
+#
+# Mariana Pinto, nmec84792
+#
 # int main(void){ 
 #    char c;
 #    do{

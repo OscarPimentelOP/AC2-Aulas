@@ -10,7 +10,7 @@
 
 int main(void){
     unsigned char segment;
-    TRISB = (TRISB & 0x80FF);               // portos RB8 a RB15 como saída
+    TRISB = (TRISB & 0x00FF);               // portos RB8 a RB15 como saída
     TRISD = (TRISD & 0xFF9F);               // portos RD5 e RD6 como saída
     LATB = (LATB & 0x0000);                 //sets the output of B8-B14 as '0'
     LATDbits.LATD6 = 1;                     // display high active
@@ -23,10 +23,10 @@ int main(void){
         int i;
         for(i=0; i < 7; i++)
         {
-            LATB = (LATB & 0x0000) | (segment << 8);
+            LATB = (LATB & 0x0000) | (segment << 8);        // limpa e depois faz shift para ligar o certo
             delay(1000);                    // send "segment" value to display
                                             // wait 0.5 second
-            segment = segment << 1;
+            segment = segment << 1;                 //shift de um para o próximo ser ligado
         }
     }
 }

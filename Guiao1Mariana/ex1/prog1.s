@@ -1,3 +1,5 @@
+# Mariana Pinto, nmec84792
+#
 # int main(void){
 #    printStr("AC2 – DETPIC32\n");                      // system call
 #    return 0;
