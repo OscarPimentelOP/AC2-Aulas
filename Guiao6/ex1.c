@@ -23,13 +23,14 @@ int main(void){
 
 
     // Configure all (digital I/O, analog input, A/D module)
-    // digital I/0
-	TRISBbits.TRISB6 = 0; // RB6 as output
+
 
     // Configure interrupt system
-    IPC6bits.AD1IP = 2; // configure priority of A/D interrupts (entre 1 e 6) o 0 e o 7 nao sao ultizados
-	IFS1bits.AD1IF = 0; // clear A/D interrupt flag 
-    EnableInterrupts(); // Global Interrupt Enable
+    // config interrupts
+	IPC6bits.AD1IP = 2; // configure priority of A/D interrupts
+	IEC1bits.AD1IE = 1; // enable A/D interrupts
+	IFS1bits.AD1IF = 0; // Reset AD1IF flag
+	EnableInterrupts(); // Global Interrupt Enable
     // Start A/D conversion
     AD1CON1bits.ASAM = 1; // Start A/D conversion
 
@@ -43,14 +44,15 @@ int main(void){
  // number - see "PIC32 family data
  // sheet" (pages 74-76)
  {
-    int i;
-	int *p;
-	p= &ADC1BUF0;
-	AD1CON1bits.ASAM = 1; // Start A/D conversion
-	for(i = 0; i<AD1CON2bits.SMPI+1;i++){
-		printInt(p[4*i],16);// Print ADC1BUF0 value // Hexadecimal (3 digits format)
+    int val_ad = 0; 
+    int j;
+	int *p = (int *)(&ADC1BUF0);
+	for(j = 0; j<8; j++){
+		val_ad = val_ad + p[j*4]; // Calculate buffer average (8 samples)
+        printInt(p[4*j],16); // Print ADC1BUF0 value // Hexadecimal (3 digits format)        
 	}
- 	printStr("\n");
+    printStr("\n");
+     AD1CON1bits.ASAM = 1; // Start A/D conversion
 
     IFS1bits.AD1IF = 0; // Reset AD1IF flag
  } 
