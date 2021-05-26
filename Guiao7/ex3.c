@@ -13,12 +13,18 @@
 	IEC0bits.T3IE = 1;	// Enable timer T3 interrupts
 	IFS0bits.T3IF = 0;	// Reset timer T3 interrupt flag 
     EnableInterrupts();
- while(1);
+    while(1);
  }
  void _int_(12) isr_T3(void) // Replace VECTOR by the timer T3
  // vector number
  {
- putChar('.');
+     static int count = 0;
+ if(count == 2){ //1Hz, one each 2 interrupts
+		putChar('.');
+		count = 0;
+	}
+    count++;
+
  // Reset T3 interrupt flag
  IFS0bits.T3IF = 0;
  } 
