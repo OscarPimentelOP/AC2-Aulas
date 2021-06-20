@@ -1,3 +1,23 @@
+/*Problema 1:
+Num jogo de xadrez de rápidas os dois adversários dispõem de um tempo inicial em minutos e
+segundos que vão ter de gerir quando estão a pensar na jogada que devem fazer. Sempre que um dos
+jogadores conclui uma jogada carrega no botão do relógio e o tempo do adversário começa a contar (a
+ser gasto).
+Neste problema vamos implementar um relógio de rápidas que conta em décimos de segundo. O
+tempo inicial é de 80 segundos. É representado por "00" nos displays de 7 segmentos e os 8 leds LED7
+a LED0 a "1". Na contagem decrescente os displays contam em décimas de segundo e de cada vez que
+mudam de 00 para 99 apagam o LED mais à esquerda.
+Existem 2 relógios, um para as Brancas e outro para as Pretas. O programa arranca com o relógio das
+Brancas a ser mostrado no conjunto LEDs+Display e a ser decrementado. A tecla B no teclado do PC
+indica que o jogador das Brancas fez a sua jogada. Uma vez pressionada, o relógio das Brancas para, o
+relógio das Pretas passa a ser mostrado e decrementado e no PC deve ser mostrada a mensagem
+"Jogador B a jogar".
+Se algum dos relógios chegar a zero esse jogador perde. Se um jogador fizer xeque mate deve carregar
+no X e o jogo termina com a sua vitória. Não há empates.
+Terminado o jogo deve ser enviada para o PC a mensagem "Vitória das Pretas" ou "Vitória das
+Brancas". 
+*/
+
 #include <detpic32.h>
 
 void delay(int ms);
