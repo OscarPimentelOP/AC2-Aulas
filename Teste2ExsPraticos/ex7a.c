@@ -5,6 +5,7 @@ no ecrã deverá aparecer: RB3: 1, RB2: 1, RB1: 0, RB0: 0 */
 #include <detpic32.h>
 
 void delay(int ms);
+
 int main(void){
 
     //RB3-0 as inputs
