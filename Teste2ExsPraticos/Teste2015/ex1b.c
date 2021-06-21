@@ -58,5 +58,6 @@ void send2displays(unsigned char value){
         LATDbits.LATD5 = 0;
         LATDbits.LATD6 = 0;
     }
+    displayFlag = !displayFlag;
 
 }
