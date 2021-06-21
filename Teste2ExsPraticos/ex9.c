@@ -56,7 +56,7 @@ int main(void){
         puts("\nFreq: ");
         printInt(freq, 10);
 
-        //freq = 10 + (voltage*10/255);
+        freq = 10 + (voltage*10/255);
         
         delay(1000/freq); 
     }

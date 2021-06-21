@@ -4,14 +4,18 @@ void configADC();
 void delay(int ms);
 void send2displays(unsigned char value);
 unsigned char toBcd(unsigned char value);
+void configTimer2();
+
+volatile char v_dec;
 
 int main(void){
 
       configADC();
+      configTimer2();
+      EnableInterrupts();
 
     while(1) {
       int x;
-      int v_dec;
      if(x++ % 25 == 0){ // 0, 250ms, 500ms, 750ms, ...
         // Start conversion
         AD1CON1bits.ASAM = 1; // Start conversion
@@ -30,8 +34,7 @@ int main(void){
         v_dec = toBcd(v);
         printInt(v,10);
     }
-    send2displays(v_dec); // Send voltage value to displays
-    delay(10); //10 samples per second
+    delay(20); //50 Hz amostragem ADC
  }
 
 
@@ -89,4 +92,21 @@ void send2displays(unsigned char value){
 
 unsigned char toBcd(unsigned char value){
     return ((value/10)<<4)  + (value%10);
+}
+
+void configTimer2(){  //timer for 400Hz event
+    T2CONbits.TCKPS = 0;
+    PR2 = 1999999;
+    TMR2 = 0;
+    T2CONbits.TON = 1;
+
+    IPC2bits.T2IP = 2;
+    IEC0bits.T2IE = 1;
+    IFS0bits.T2IF = 0;
+    
+}
+
+void _int_(8) isr_T2(void){
+    send2displays(v_dec); // Send voltage value to displays
+    IFS0bits.T2IF = 0;  
 }
