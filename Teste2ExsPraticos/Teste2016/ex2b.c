@@ -103,6 +103,12 @@ void configTimer2(){  //timer for 400Hz event
     IPC2bits.T2IP = 2;
     IEC0bits.T2IE = 1;
     IFS0bits.T2IF = 0;
+
+    //PWM signal config
+    OC2CONbits.OCM = 6; // PWM mode on OCx; fault pin disabled
+    OC2CONbits.OCTSEL =0;// Use timer T2 as the time base for PWM generation
+    OC2RS = 50000; // Ton constant
+    OC2CONbits.ON = 1; // Enable OC1 module
     
 }
 
